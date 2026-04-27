@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI HUB - Agent Portal</title>
     <link rel="icon" href="logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #F5B731;
@@ -31,7 +28,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
@@ -185,13 +182,14 @@
             position: relative;
         }
 
-        .search-box i {
+        .search-box svg {
             position: absolute;
             left: 18px;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 14px;
+            width: 16px;
+            height: 16px;
+            fill: var(--text-muted);
         }
 
         .search-box input {
@@ -202,7 +200,7 @@
             border-radius: 12px;
             color: var(--text-primary);
             font-size: 14px;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             outline: none;
             transition: all 0.2s;
         }
@@ -282,10 +280,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            color: var(--text-primary);
-            background: var(--card-accent);
-            opacity: 0.9;
+        }
+
+        .card-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: #FFFFFF;
         }
 
         .card-status {
@@ -358,7 +358,7 @@
         .card-path {
             font-size: 11px;
             color: var(--text-muted);
-            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-family: 'Consolas', 'Courier New', monospace;
             background: rgba(255, 255, 255, 0.04);
             padding: 4px 10px;
             border-radius: 6px;
@@ -371,7 +371,7 @@
             padding: 9px 20px;
             font-size: 13px;
             font-weight: 600;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: var(--bg-primary);
             background: var(--gold);
             border: none;
@@ -386,12 +386,14 @@
             box-shadow: 0 4px 16px rgba(245, 183, 49, 0.3);
         }
 
-        .btn-open i {
-            font-size: 11px;
+        .btn-open svg {
+            width: 11px;
+            height: 11px;
+            fill: currentColor;
             transition: transform 0.2s;
         }
 
-        .btn-open:hover i {
+        .btn-open:hover svg {
             transform: translateX(2px);
         }
 
@@ -456,7 +458,8 @@
 
     <section class="search-section">
         <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <!-- Search icon -->
+            <svg viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>
             <input type="text" id="searchInput" placeholder="Agent ara..." autocomplete="off">
         </div>
     </section>
@@ -467,7 +470,9 @@
             <!-- Anomaly Detection -->
             <div class="agent-card" style="--card-accent: #E74C3C;" data-name="anomaly detection">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #E74C3C;"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <div class="card-icon" style="background: #E74C3C;">
+                        <svg viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zm-312 8v64c0 13.3 10.7 24 24 24s24-10.7 24-24V216c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80-96v160c0 13.3 10.7 24 24 24s24-10.7 24-24V120c0-13.3-10.7-24-24-24s-24 10.7-24 24zm80 64v96c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -476,14 +481,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/anomaly-detection</span>
-                    <a href="https://anom-detec.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="/agents/anomaly-detection" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- Data Cleaning -->
             <div class="agent-card" style="--card-accent: #2ECC71;" data-name="data cleaning">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #2ECC71;"><i class="fa-solid fa-broom"></i></div>
+                    <div class="card-icon" style="background: #2ECC71;">
+                        <svg viewBox="0 0 576 512"><path d="M566.6 54.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-35.3 35.3c-5.4-2.6-11.4-4.1-17.8-4.1H432L384 0H352L304 40.6 566.6 54.6zM336 80l48-48h26.7l-64 64H336V80zm-16 96H192L144 224H128c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32h32l48 48H480l48-48h16c17.7 0 32-14.3 32-32V256c0-17.7-14.3-32-32-32H544L496 176H320zM64 352H32c-17.7 0-32 14.3-32 32v64c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V384c0-17.7-14.3-32-32-32z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -492,14 +499,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/data-cleaning</span>
-                   <a href="https://data-cleaningagent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="/agents/data-cleaning" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- Data Visualization -->
             <div class="agent-card" style="--card-accent: #3498DB;" data-name="data visualization">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #3498DB;"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div class="card-icon" style="background: #3498DB;">
+                        <svg viewBox="0 0 576 512"><path d="M304 240V16.6c0-9 7-16.6 16-16.6C443.7 0 544 100.3 544 224c0 9-7.6 16-16.6 16H304zM32 272C32 150.7 122.1 50.3 239 34.3c9.2-1.3 17 6.1 17 15.4V272L412.5 407.9c6.4 6.4 6.2 17.1-1.2 22.5C372 462.4 322.6 480 272 480 139.5 480 32 372.5 32 272z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -508,14 +517,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/data-visualization</span>
-                    <a href="https://data-visualization-agent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="/agents/data-visualization" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- Data Quality -->
             <div class="agent-card" style="--card-accent: #9B59B6;" data-name="data quality">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #9B59B6;"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <div class="card-icon" style="background: #9B59B6;">
+                        <svg viewBox="0 0 384 512"><path d="M192 0c-41.8 0-77.4 26.7-90.5 64H64C28.7 64 0 92.7 0 128V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V128c0-35.3-28.7-64-64-64H282.5C269.4 26.7 233.8 0 192 0zm0 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64zM305 273L177 401c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L271 239c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -524,14 +535,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/data-quality</span>
-                    <a href="https://data-quality-agent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="/agents/data-quality" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- Feature Engineering -->
             <div class="agent-card" style="--card-accent: #E67E22;" data-name="feature engineering">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #E67E22;"><i class="fa-solid fa-gears"></i></div>
+                    <div class="card-icon" style="background: #E67E22;">
+                        <svg viewBox="0 0 640 512"><path d="M308.5 135.3c7.1-6.3 9.9-16.2 6.2-25c-2.3-5.3-4.8-10.5-7.6-15.5L304 89.4c-3-5-6.3-9.9-9.8-14.6c-5.7-7.6-15.7-10.1-24.7-7.1l-28.2 9.3c-10.7-8.8-23-16-36.2-20.9L199 27.1c-1.9-9.3-9.1-16.7-18.5-17.8C173.9 8.4 167.2 8 160.4 8h-.7c-6.8 0-13.5 .4-20.1 1.2c-9.4 1.1-16.6 8.6-18.5 17.8L115 56.1c-13.3 5-25.5 12.1-36.2 20.9L50.5 67.8c-9-3-19-.5-24.7 7.1c-3.5 4.7-6.8 9.6-9.9 14.6l-3 5.3c-2.8 5-5.3 10.2-7.6 15.6c-3.7 8.7-.9 18.6 6.2 25l22.2 19.8C32.6 161.9 32 168.9 32 176s.6 14.1 1.7 20.9L11.5 216.7c-7.1 6.3-9.9 16.2-6.2 25c2.3 5.3 4.8 10.5 7.6 15.6l3 5.2c3 5.1 6.3 9.9 9.9 14.6c5.7 7.6 15.7 10.1 24.7 7.1l28.2-9.3c10.7 8.8 23 16 36.2 20.9l6.1 29.1c1.9 9.3 9.1 16.7 18.5 17.8c6.7 .8 13.5 1.2 20.4 1.2s13.7-.4 20.4-1.2c9.4-1.1 16.6-8.6 18.5-17.8l6.1-29.1c13.3-5 25.5-12.1 36.2-20.9l28.2 9.3c9 3 19 .5 24.7-7.1c3.5-4.7 6.8-9.5 9.8-14.6l3.1-5.4c2.8-5 5.3-10.2 7.6-15.5c3.7-8.7 .9-18.6-6.2-25l-22.2-19.8c1.1-6.8 1.7-13.8 1.7-20.9s-.6-14.1-1.7-20.9l22.2-19.8zM112 176a48 48 0 1 1 96 0 48 48 0 1 1-96 0zM504.7 500.5c6.3 7.1 16.2 9.9 25 6.2c5.3-2.3 10.5-4.8 15.5-7.6l5.4-3.1c5-3 9.9-6.3 14.6-9.8c7.6-5.7 10.1-15.7 7.1-24.7l-9.3-28.2c8.8-10.7 16-23 20.9-36.2l29.1-6.1c9.3-1.9 16.7-9.1 17.8-18.5c.8-6.7 1.2-13.5 1.2-20.4s-.4-13.7-1.2-20.4c-1.1-9.4-8.6-16.6-17.8-18.5L583.9 307c-5-13.3-12.1-25.5-20.9-36.2l9.3-28.2c3-9 .5-19-7.1-24.7c-4.7-3.5-9.6-6.8-14.6-9.9l-5.3-3c-5-2.8-10.2-5.3-15.6-7.6c-8.7-3.7-18.6-.9-25 6.2l-19.8 22.2c-6.8-1.1-13.8-1.7-20.9-1.7s-14.1 .6-20.9 1.7l-19.8-22.2c-6.3-7.1-16.2-9.9-25-6.2c-5.3 2.3-10.5 4.8-15.6 7.6l-5.2 3c-5.1 3-9.9 6.3-14.6 9.9c-7.6 5.7-10.1 15.7-7.1 24.7l9.3 28.2c-8.8 10.7-16 23-20.9 36.2L307 339.8c-9.3 1.9-16.7 9.1-17.8 18.5c-.8 6.7-1.2 13.5-1.2 20.4s.4 13.7 1.2 20.4c1.1 9.4 8.6 16.6 17.8 18.5l29.1 6.1c5 13.3 12.1 25.5 20.9 36.2l-9.3 28.2c-3 9-.5 19 7.1 24.7c4.7 3.5 9.5 6.8 14.6 9.8l5.4 3.1c5 2.8 10.2 5.3 15.5 7.6c8.7 3.7 18.6 .9 25-6.2l19.8-22.2c6.8 1.1 13.8 1.7 20.9 1.7s14.1-.6 20.9-1.7l19.8 22.2zM464 336a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -540,14 +553,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/feature-engineering</span>
-                    <a href="https://feature-engineering-agent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="http://localhost:8502/" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- Smart Modeling -->
             <div class="agent-card" style="--card-accent: #1ABC9C;" data-name="smart modeling">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #1ABC9C;"><i class="fa-solid fa-brain"></i></div>
+                    <div class="card-icon" style="background: #1ABC9C;">
+                        <svg viewBox="0 0 512 512"><path d="M184 0c30.9 0 56 25.1 56 56V456c0 30.9-25.1 56-56 56c-28.9 0-52.7-21.9-55.7-50.1c-5.2 1.4-10.7 2.1-16.3 2.1c-35.3 0-64-28.7-64-64c0-7.4 1.3-14.6 3.6-21.2C21.4 367.4 0 338.2 0 304c0-31.9 18.7-59.5 45.8-72.3C37.1 220.8 32 207 32 192c0-30.7 21.6-56.3 50.4-62.6C80.8 123.9 80 118 80 112c0-29.9 20.6-55.1 48.3-62.1C131.3 21.9 155.1 0 184 0zM328 0c28.9 0 52.6 21.9 55.7 49.9c27.8 7 48.3 32.1 48.3 62.1c0 6-.8 11.9-2.4 17.4c28.8 6.2 50.4 31.9 50.4 62.6c0 15-5.1 28.8-13.8 39.7C493.3 244.5 512 272.1 512 304c0 34.2-21.4 63.4-51.6 74.8c2.3 6.6 3.6 13.8 3.6 21.2c0 35.3-28.7 64-64 64c-5.6 0-11.1-.7-16.3-2.1c-3 28.2-26.8 50.1-55.7 50.1c-30.9 0-56-25.1-56-56V56c0-30.9 25.1-56 56-56z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -556,14 +571,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/smart-modeling</span>
-                    <a href="https://smart-modeling-agent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="http://localhost:8501/" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- Segment Intelligence -->
             <div class="agent-card" style="--card-accent: #F39C12;" data-name="segment intelligence">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #F39C12;"><i class="fa-solid fa-users-viewfinder"></i></div>
+                    <div class="card-icon" style="background: #F39C12;">
+                        <svg viewBox="0 0 640 512"><path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1-192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -572,14 +589,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/segment-intelligence</span>
-                    <a href="https://segment-intelligence.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="/agents/segment-intelligence" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- Mock Data Generator -->
             <div class="agent-card" style="--card-accent: #16A085;" data-name="mock data generator">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #16A085;"><i class="fa-solid fa-database"></i></div>
+                    <div class="card-icon" style="background: #16A085;">
+                        <svg viewBox="0 0 448 512"><path d="M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6V288c0 44.2-100.3 80-224 80S0 332.2 0 288V186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6V432c0 44.2-100.3 80-224 80S0 476.2 0 432V346.1z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -588,14 +607,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/mock-data-generator</span>
-                    <a href="https://mock-data-generator.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="http://localhost:8503" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- Quiz Generator -->
             <div class="agent-card" style="--card-accent: #8E44AD;" data-name="quiz generator">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #8E44AD;"><i class="fa-solid fa-circle-question"></i></div>
+                    <div class="card-icon" style="background: #8E44AD;">
+                        <svg viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM169.8 165.3c7.9-22.3 29.1-37.3 52.8-37.3h58.3c34.9 0 63.1 28.3 63.1 63.1c0 22.6-12.1 43.5-31.7 54.8L280 264.4c-.2 13-10.9 23.6-24 23.6c-13.3 0-24-10.7-24-24V250.5c0-8.6 4.6-16.5 12.1-20.8l44.3-25.4c4.7-2.7 7.6-7.7 7.6-13.1c0-8.4-6.8-15.1-15.1-15.1H222.6c-3.4 0-6.4 2.1-7.5 5.3l-.4 1.2c-4.4 12.5-18.2 19-30.6 14.6s-19-18.2-14.6-30.6l.4-1.2zM224 352a32 32 0 1 1 64 0 32 32 0 1 1-64 0z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -604,14 +625,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/quiz-gen</span>
-                    <a href="https://quiz-generator-agentt.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="/agents/quiz-gen" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- MailCraft Agent -->
             <div class="agent-card" style="--card-accent: #D35400;" data-name="mailcraft agent">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #D35400;"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div class="card-icon" style="background: #D35400;">
+                        <svg viewBox="0 0 512 512"><path d="M215.4 96H144 107.8 96v8.8V144v40.4 89L.2 202.5c1.6-18.1 10.9-34.9 25.7-45.8L48 140.3V96c0-26.5 21.5-48 48-48h76.6l49.9-36.9C232.2 3.9 243.9 0 256 0s23.8 3.9 33.5 11L339.4 48H416c26.5 0 48 21.5 48 48v44.3l22.1 16.4c14.8 10.9 24.1 27.7 25.7 45.8L416 273.4v-89V144 104.8 96H404.2 368 296.6L256 60.6 215.4 96zM0 448V242.1L217.6 370.6c11.7 7.8 24.6 11.8 37.9 11.8c.2 0 .3 0 .5 0c.2 0 .3 0 .5 0c13.3 0 26.2-4 37.9-11.8L512 242.1V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -620,14 +643,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/mailcraft-agent</span>
-                    <a href="https://email-generator-agent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="/agents/mailcraft-agent" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- Data Comparison -->
             <div class="agent-card" style="--card-accent: #2980B9;" data-name="data comparison">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #2980B9;"><i class="fa-solid fa-code-compare"></i></div>
+                    <div class="card-icon" style="background: #2980B9;">
+                        <svg viewBox="0 0 512 512"><path d="M320 488c0 9.5-5.6 18.1-14.2 21.9s-18.8 2.3-25.8-4.1l-80-72c-5.1-4.6-7.9-11-7.9-17.8s2.9-13.3 7.9-17.8l80-72c7-6.3 17.2-7.9 25.8-4.1s14.2 12.4 14.2 21.9v40h16c35.3 0 64-28.7 64-64V153.3C371.7 141 352 112.8 352 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V320c0 70.7-57.3 128-128 128H320v40zM192 24c0-9.5 5.6-18.1 14.2-21.9s18.8-2.3 25.8 4.1l80 72c5.1 4.6 7.9 11 7.9 17.8s-2.9 13.3-7.9 17.8l-80 72c-7 6.3-17.2 7.9-25.8 4.1S192 177.5 192 168V128H176c-35.3 0-64 28.7-64 64V358.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V192c0-70.7 57.3-128 128-128h16V24z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -636,14 +661,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/data-comp</span>
-                    <a href="https://data-comparison-agent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="/agents/data-comp" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
-            
+
             <!-- Forecasting Agent -->
             <div class="agent-card" style="--card-accent: #26A69A;" data-name="forecasting agent">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #26A69A;"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="card-icon" style="background: #26A69A;">
+                        <svg viewBox="0 0 512 512"><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -652,14 +679,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/forecasting</span>
-                    <a href="https://forecasting-agent.streamlit.app" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="/agents/forecasting" class="btn-open">AÇ <svg viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></a>
                 </div>
             </div>
 
             <!-- A/B Testing Agent (Yakında) -->
             <div class="agent-card coming-soon" style="--card-accent: #AB47BC;" data-name="a/b testing agent">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #AB47BC;"><i class="fa-solid fa-flask-vial"></i></div>
+                    <div class="card-icon" style="background: #AB47BC;">
+                        <svg viewBox="0 0 448 512"><path d="M288 0H160 128C57.3 0 0 57.3 0 128v16c0 17.7 14.3 32 32 32s32-14.3 32-32V128c0-35.3 28.7-64 64-64V224c-17.7 0-32 14.3-32 32s14.3 32 32 32h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V64c35.3 0 64 28.7 64 64v16c0 17.7 14.3 32 32 32s32-14.3 32-32V128C384 57.3 326.7 0 256 0H288zM176 384H272c26.5 0 48 21.5 48 48v32c0 26.5-21.5 48-48 48H176c-26.5 0-48-21.5-48-48V432c0-26.5 21.5-48 48-48z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -668,14 +697,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/ab-testing</span>
-                    <span class="btn-open">Yakında <i class="fa-solid fa-clock"></i></span>
+                    <span class="btn-open">Yakında <svg viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></span>
                 </div>
             </div>
-                
+
             <!-- Code Assist (Yakında) -->
             <div class="agent-card coming-soon" style="--card-accent: #00BCD4;" data-name="code assist">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #00BCD4;"><i class="fa-solid fa-code"></i></div>
+                    <div class="card-icon" style="background: #00BCD4;">
+                        <svg viewBox="0 0 640 512"><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -684,14 +715,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/code-assist</span>
-                    <span class="btn-open">Yakında <i class="fa-solid fa-clock"></i></span>
+                    <span class="btn-open">Yakında <svg viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></span>
                 </div>
             </div>
 
             <!-- SQL Generator (Yakında) -->
             <div class="agent-card coming-soon" style="--card-accent: #4CAF50;" data-name="sql generator">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #4CAF50;"><i class="fa-solid fa-database"></i></div>
+                    <div class="card-icon" style="background: #4CAF50;">
+                        <svg viewBox="0 0 448 512"><path d="M448 80v48c0 44.2-100.3 80-224 80S0 172.2 0 128V80C0 35.8 100.3 0 224 0S448 35.8 448 80zM393.2 214.7c20.8-7.4 39.9-16.9 54.8-28.6V288c0 44.2-100.3 80-224 80S0 332.2 0 288V186.1c14.9 11.8 34 21.2 54.8 28.6C99.7 230.7 159.5 240 224 240s124.3-9.3 169.2-25.3zM0 346.1c14.9 11.8 34 21.2 54.8 28.6C99.7 390.7 159.5 400 224 400s124.3-9.3 169.2-25.3c20.8-7.4 39.9-16.9 54.8-28.6V432c0 44.2-100.3 80-224 80S0 476.2 0 432V346.1z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -700,14 +733,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/sql-generator</span>
-                    <span class="btn-open">Yakında <i class="fa-solid fa-clock"></i></span>
+                    <span class="btn-open">Yakında <svg viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></span>
                 </div>
             </div>
-            
+
             <!-- PMO Agent (Yakında) -->
             <div class="agent-card coming-soon" style="--card-accent: #FF7043;" data-name="pmo agent">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #FF7043;"><i class="fa-solid fa-diagram-project"></i></div>
+                    <div class="card-icon" style="background: #FF7043;">
+                        <svg viewBox="0 0 576 512"><path d="M0 80C0 53.5 21.5 32 48 32h96c26.5 0 48 21.5 48 48V96H384V80c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H432c-26.5 0-48-21.5-48-48V160H192v16c0 1.7-.1 3.4-.3 5L272 288h96c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H272c-26.5 0-48-21.5-48-48V336c0-1.7 .1-3.4 .3-5L144 224H48c-26.5 0-48-21.5-48-48V80z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -716,14 +751,16 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/pmo-agent</span>
-                    <span class="btn-open">Yakında <i class="fa-solid fa-clock"></i></span>
+                    <span class="btn-open">Yakında <svg viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></span>
                 </div>
             </div>
 
             <!-- Document Insight (Yakında) -->
             <div class="agent-card coming-soon" style="--card-accent: #5C6BC0;" data-name="document insight">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #5C6BC0;"><i class="fa-solid fa-file-circle-question"></i></div>
+                    <div class="card-icon" style="background: #5C6BC0;">
+                        <svg viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM80 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64h64c8.8 0 16 7.2 16 16s-7.2 16-16 16H80c-8.8 0-16-7.2-16-16s7.2-16 16-16zm54.2 253.8c-6.1 5.3-16 .9-16-7.2V352c0-23.4 12.9-44.4 33.1-56.2c12.2-7.1 23.1-16.1 33-27.8c6-7.1 2.4-17.6-5.8-20.7c-20.1-7.5-34.5-27-34.5-50c0-29.4 23.5-53.3 52.6-54c29.3-.7 53.4 23 53.4 52.2c0 22.7-14 42-33.7 49.7c-8.5 3.3-12 12-7.2 19.4c7.6 11.6 17.3 21.3 28.5 28.7C274.7 317.3 304 349.7 304 388.4V409c0 8-9.8 12.4-16 7.2L192 336l-57.8 45.8z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -732,23 +769,25 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/document-insight</span>
-                    <span class="btn-open">Yakında <i class="fa-solid fa-clock"></i></span>
+                    <span class="btn-open">Yakında <svg viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></span>
                 </div>
             </div>
 
-            <!-- Prompt Optimization (Yakında) -->
-            <div class="agent-card coming-soon" style="--card-accent: #9C27B0;" data-name="prompt optimization">
+            <!-- Social Intelligence (Yakında) -->
+            <div class="agent-card coming-soon" style="--card-accent: #9C27B0;" data-name="social intelligence">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #9C27B0;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div class="card-icon" style="background: #9C27B0;">
+                        <svg viewBox="0 0 448 512"><path d="M352 224c53 0 96-43 96-96s-43-96-96-96s-96 43-96 96c0 4 .2 8 .7 11.9l-94.1 47C145.4 170.2 121.9 160 96 160c-53 0-96 43-96 96s43 96 96 96c25.9 0 49.4-10.2 66.6-26.9l94.1 47c-.5 3.9-.7 7.9-.7 11.9c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-25.9 0-49.4 10.2-66.6 26.9l-94.1-47c.5-3.9 .7-7.9 .7-11.9s-.2-8-.7-11.9l94.1-47C302.6 213.8 326.1 224 352 224z"/></svg>
+                    </div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
-                    <h3>Prompt Optimization Agent</h3>
-                    <p>Kullanıcı promptlarını iyileştirir ve daha etkili hale getirir. Daha doğru, tutarlı ve yüksek kaliteli çıktılar elde edilmesini sağlar.</p>
+                    <h3>Social Intelligence Agent</h3>
+                    <p>Somera üzerinden toplanan sosyal medya verilerini detaylı şekilde analiz eder; marka algısı, trendler, kullanıcı etkileşimleri ve duygu analizine dair içgörüler sunar.</p>
                 </div>
                 <div class="card-footer">
-                    <span class="card-path">/agents/prompt-optimization</span>
-                    <span class="btn-open">Yakında <i class="fa-solid fa-clock"></i></span>
+                    <span class="card-path">/agents/social-intelligence</span>
+                    <span class="btn-open">Yakında <svg viewBox="0 0 512 512"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg></span>
                 </div>
             </div>
         </div>
