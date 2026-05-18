@@ -79,13 +79,13 @@
         }
 
         .logo-group img {
-            height: 62px;
-            width: 62px;
+            height: 42px;
+            width: 42px;
             border-radius: 10px;
         }
 
         .logo-text {
-            font-size: 40px;
+            font-size: 20px;
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -103,6 +103,47 @@
             padding: 4px 12px;
             border-radius: 20px;
             letter-spacing: 0.5px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+        .user-pill svg { fill: var(--gold); }
+
+        .btn-logout {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: inherit;
+            color: var(--text-secondary);
+            background: transparent;
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-logout:hover {
+            color: var(--gold);
+            border-color: var(--gold);
+            background: rgba(245, 183, 49, 0.05);
         }
 
         /* --- Hero --- */
@@ -420,6 +461,20 @@
     </style>
 </head>
 <body>
+    <script>
+        // ───── Auth guard (GitHub Pages, localStorage-only demo) ─────────────
+        // Eğer login sayfasından gelinmediyse (oturum yoksa) login.html'e döner.
+        (function () {
+            try {
+                if (!localStorage.getItem('ai_hub_user')) {
+                    window.location.replace('login.html');
+                }
+            } catch (_) {
+                window.location.replace('login.html');
+            }
+        })();
+    </script>
+
     <div class="bg-glow"></div>
 
     <header>
@@ -428,7 +483,17 @@
                 <img src="logo.png" alt="AI HUB Logo">
                 <div class="logo-text">AI <span>HUB</span></div>
             </div>
-            <div class="header-badge">ODEATECH</div>
+            <div class="header-right">
+                <div class="header-badge">ODEATECH</div>
+                <div class="user-pill" id="userPill" title="Aktif kullanıcı">
+                    <svg viewBox="0 0 448 512" width="12" height="12" fill="currentColor"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                    <span id="userName">—</span>
+                </div>
+                <button class="btn-logout" id="btnLogout" title="Çıkış yap">
+                    <svg viewBox="0 0 512 512" width="12" height="12" fill="currentColor"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L192 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
+                    Çıkış
+                </button>
+            </div>
         </div>
     </header>
 
@@ -771,6 +836,24 @@
                 card.style.display = match ? '' : 'none';
             });
         });
+
+        // ───── Kullanıcı adını göster + Çıkış butonu ────────────────────────
+        (function () {
+            const userNameEl = document.getElementById('userName');
+            const logoutBtn = document.getElementById('btnLogout');
+            try {
+                const raw = localStorage.getItem('ai_hub_user');
+                if (raw) {
+                    const user = JSON.parse(raw);
+                    if (user && user.username) userNameEl.textContent = user.username;
+                }
+            } catch (_) {}
+
+            logoutBtn.addEventListener('click', () => {
+                try { localStorage.removeItem('ai_hub_user'); } catch (_) {}
+                window.location.href = 'login.html';
+            });
+        })();
     </script>
 </body>
 </html>

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI HUB - Giriş Yap</title>
+    <link rel="icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #F5B731;
+            --gold-light: #FDD835;
+            --gold-dark: #C49000;
+            --bg-primary: #0A0A0A;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --bg-card-hover: #1C1C1C;
+            --border: #2A2A2A;
+            --border-hover: #3A3A3A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --text-muted: #666666;
+            --danger: #E74C3C;
+            --success: #2ECC71;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow-x: hidden;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse, rgba(245, 183, 49, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bg-glow-bottom {
+            position: fixed;
+            bottom: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 600px;
+            background: radial-gradient(ellipse, rgba(245, 183, 49, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 440px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 44px 40px 36px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+        .brand img {
+            height: 64px;
+            width: 64px;
+            border-radius: 14px;
+            box-shadow: 0 4px 20px rgba(245, 183, 49, 0.15);
+        }
+        .brand-text {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        .brand-text span { color: var(--gold); }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .input-wrap { position: relative; }
+        .input-wrap svg {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            fill: var(--text-muted);
+            transition: fill 0.2s;
+        }
+        .form-input {
+            width: 100%;
+            padding: 14px 16px 14px 44px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .form-input::placeholder { color: var(--text-muted); }
+        .form-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(245, 183, 49, 0.1);
+        }
+        .form-input:focus + svg,
+        .input-wrap:focus-within svg { fill: var(--gold); }
+
+        .btn-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .btn-primary {
+            color: var(--bg-primary);
+            background: var(--gold);
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+            box-shadow: 0 4px 16px rgba(245, 183, 49, 0.3);
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            border-color: var(--border);
+        }
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-1px);
+        }
+        .btn:disabled, .btn[aria-disabled="true"] {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        .btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 28px 0 20px;
+            color: var(--text-muted);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .btn-monofor {
+            width: 100%;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border-color: var(--border);
+            position: relative;
+            cursor: not-allowed;
+        }
+        .btn-monofor .coming-soon-badge {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--gold);
+            background: rgba(245, 183, 49, 0.1);
+            border: 1px solid rgba(245, 183, 49, 0.25);
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 8px;
+            letter-spacing: 0.5px;
+        }
+        .btn-monofor:hover {
+            border-color: var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            transform: none;
+        }
+
+        .message {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+            display: none;
+        }
+        .message.error {
+            display: block;
+            background: rgba(231, 76, 60, 0.08);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+            color: #FF8A7E;
+        }
+        .message.success {
+            display: block;
+            background: rgba(46, 204, 113, 0.08);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            color: #6FE7A0;
+        }
+        .message.info {
+            display: block;
+            background: rgba(245, 183, 49, 0.08);
+            border: 1px solid rgba(245, 183, 49, 0.25);
+            color: var(--gold);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 11px;
+            color: var(--text-muted);
+            letter-spacing: 0.3px;
+        }
+        .footer-note .accent { color: var(--gold); }
+
+        @media (max-width: 480px) {
+            .login-card { padding: 32px 24px 28px; }
+            .btn-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+    <div class="bg-glow-bottom"></div>
+
+    <main class="login-card">
+        <div class="brand">
+            <img src="logo.png" alt="AI HUB Logo">
+            <div class="brand-text">AI <span>HUB</span></div>
+        </div>
+
+        <p class="subtitle">
+            Agent Portal'a erişmek için kullanıcı adınızı girin.<br>
+            Yeni misiniz? <strong style="color: var(--gold);">Yeni Kullanıcı Yarat</strong> ile hızlıca başlayın.
+        </p>
+
+        <form id="authForm" autocomplete="off" novalidate>
+            <div class="form-group">
+                <label class="form-label" for="username">Kullanıcı Adı</label>
+                <div class="input-wrap">
+                    <input
+                        id="username"
+                        name="username"
+                        class="form-input"
+                        type="text"
+                        placeholder="örn. selena.avci"
+                        autocomplete="username"
+                        required
+                        minlength="3"
+                        maxlength="32"
+                        pattern="[A-Za-z0-9._-]+"
+                    >
+                    <svg viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                </div>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" id="btnCreate" class="btn btn-secondary">
+                    <svg viewBox="0 0 640 512"><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                    Yeni Kullanıcı Yarat
+                </button>
+                <button type="submit" id="btnLogin" class="btn btn-primary">
+                    <svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L48 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l112 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+                    Giriş Yap
+                </button>
+            </div>
+
+            <div class="divider">veya</div>
+
+            <button type="button" class="btn btn-monofor" aria-disabled="true" id="btnMonofor">
+                <svg viewBox="0 0 512 512"><path d="M243.4 2.6l-224 96c-14 6-21.8 21-18.7 35.8S16.8 160 32 160l0 8c0 13.3 10.7 24 24 24l400 0c13.3 0 24-10.7 24-24l0-8c15.2 0 28.3-10.7 31.3-25.6s-4.8-29.9-18.7-35.8l-224-96c-8-3.4-17.2-3.4-25.2 0zM128 224l-64 0 0 196.3c-.6 .3-1.2 .7-1.8 1.1l-48 32c-11.7 7.8-17 22.4-12.9 35.9S17.9 512 32 512l448 0c14.1 0 26.5-9.2 30.6-22.7s-1.1-28.1-12.9-35.9l-48-32c-.6-.4-1.2-.7-1.8-1.1L448 224l-64 0 0 192-40 0 0-192-64 0 0 192-48 0 0-192-64 0 0 192-40 0 0-192zM256 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                Monofor ile Giriş Yap
+                <span class="coming-soon-badge">Yakında</span>
+            </button>
+
+            <div id="message" class="message"></div>
+        </form>
+
+        <div class="footer-note">
+            AI HUB &copy; <span class="accent">ODEATECH</span> &mdash; AI Applications &amp; Big Data Management Ekibi
+        </div>
+    </main>
+
+    <script>
+        // ─────────────────────────────────────────────────────────────────────
+        // GitHub Pages (statik) sürüm — backend yok, "kullanıcı veritabanı"
+        // tarayıcının localStorage'ında tutulur. Yalnızca demo amaçlıdır.
+        //
+        // Anahtarlar:
+        //   ai_hub_users  → JSON string array, kayıtlı kullanıcı adları
+        //   ai_hub_user   → JSON string, aktif oturum kullanıcısı
+        // ─────────────────────────────────────────────────────────────────────
+        const PORTAL_URL = 'index.html';
+        const USERS_KEY = 'ai_hub_users';
+        const SESSION_KEY = 'ai_hub_user';
+
+        const form = document.getElementById('authForm');
+        const usernameInput = document.getElementById('username');
+        const btnCreate = document.getElementById('btnCreate');
+        const btnLogin = document.getElementById('btnLogin');
+        const btnMonofor = document.getElementById('btnMonofor');
+        const msgEl = document.getElementById('message');
+
+        function showMessage(text, type) {
+            msgEl.textContent = text;
+            msgEl.className = 'message ' + type;
+        }
+
+        function clearMessage() {
+            msgEl.textContent = '';
+            msgEl.className = 'message';
+        }
+
+        function validateUsername(value) {
+            if (!value) return 'Lütfen kullanıcı adınızı girin.';
+            if (value.length < 3) return 'Kullanıcı adı en az 3 karakter olmalı.';
+            if (value.length > 32) return 'Kullanıcı adı en fazla 32 karakter olabilir.';
+            if (!/^[A-Za-z0-9._-]+$/.test(value)) {
+                return 'Sadece harf, rakam, nokta, alt çizgi ve tire kullanılabilir.';
+            }
+            return null;
+        }
+
+        function loadUsers() {
+            try {
+                const raw = localStorage.getItem(USERS_KEY);
+                const arr = raw ? JSON.parse(raw) : [];
+                return Array.isArray(arr) ? arr : [];
+            } catch (_) {
+                return [];
+            }
+        }
+
+        function saveUsers(list) {
+            try { localStorage.setItem(USERS_KEY, JSON.stringify(list)); } catch (_) {}
+        }
+
+        function startSession(username) {
+            try {
+                localStorage.setItem(SESSION_KEY, JSON.stringify({ username }));
+            } catch (_) {}
+        }
+
+        function setLoading(btn, loading, originalText) {
+            if (loading) {
+                btn.dataset.original = btn.innerHTML;
+                btn.innerHTML = '<span class="spinner"></span> ' + originalText;
+                btnCreate.disabled = true;
+                btnLogin.disabled = true;
+            } else {
+                btn.innerHTML = btn.dataset.original || originalText;
+                btnCreate.disabled = false;
+                btnLogin.disabled = false;
+            }
+        }
+
+        function handleAuth(action) {
+            clearMessage();
+            const username = usernameInput.value.trim();
+            const validationError = validateUsername(username);
+            if (validationError) {
+                showMessage(validationError, 'error');
+                usernameInput.focus();
+                return;
+            }
+
+            const targetBtn = action === 'create' ? btnCreate : btnLogin;
+            const loadingLabel = action === 'create' ? 'Oluşturuluyor...' : 'Giriş yapılıyor...';
+            setLoading(targetBtn, true, loadingLabel);
+
+            // Backend yok, ama kullanıcıya gerçek bir feedback hissi vermek için
+            // küçük bir simüle gecikme.
+            setTimeout(() => {
+                const users = loadUsers();
+                const exists = users.includes(username);
+
+                if (action === 'create') {
+                    if (exists) {
+                        showMessage('Bu kullanıcı adı zaten kayıtlı. Lütfen Giriş Yap butonunu kullanın.', 'error');
+                        setLoading(targetBtn, false);
+                        return;
+                    }
+                    users.push(username);
+                    saveUsers(users);
+                    startSession(username);
+                    showMessage('Hesap oluşturuldu, yönlendiriliyorsunuz...', 'success');
+                    setTimeout(() => { window.location.href = PORTAL_URL; }, 500);
+                    return;
+                }
+
+                // action === 'login'
+                if (!exists) {
+                    showMessage('Kullanıcı bulunamadı. Önce Yeni Kullanıcı Yarat ile hesap oluşturun.', 'error');
+                    setLoading(targetBtn, false);
+                    return;
+                }
+                startSession(username);
+                showMessage('Giriş başarılı, yönlendiriliyorsunuz...', 'success');
+                setTimeout(() => { window.location.href = PORTAL_URL; }, 500);
+            }, 300);
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleAuth('login');
+        });
+        btnCreate.addEventListener('click', () => handleAuth('create'));
+        btnMonofor.addEventListener('click', () => {
+            showMessage('Monofor SSO entegrasyonu yakında aktif olacak.', 'info');
+        });
+
+        // Zaten giriş yapılmışsa direkt portala götür
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                const session = localStorage.getItem(SESSION_KEY);
+                if (session) {
+                    window.location.replace(PORTAL_URL);
+                    return;
+                }
+            } catch (_) {}
+            usernameInput.focus();
+        });
+    </script>
+</body>
+</html>
