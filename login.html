@@ -76,7 +76,6 @@
             z-index: 0;
         }
 
-        /* --- Ambient background glow --- */
         .bg-glow {
             position: fixed;
             top: -200px;
@@ -101,7 +100,6 @@
             z-index: 0;
         }
 
-        /* --- Card --- */
         .login-card {
             position: relative;
             z-index: 1;
@@ -173,7 +171,7 @@
         }
 
         .brand-subtitle {
-            font-size: 22px;
+            font-size: 18px;
             font-weight: 600;
             letter-spacing: 2.2px;
             color: var(--text-secondary);
@@ -190,7 +188,6 @@
             line-height: 1.5;
         }
 
-        /* --- Form --- */
         form {
             position: relative;
             z-index: 1;
@@ -252,7 +249,6 @@
             fill: var(--gold);
         }
 
-        /* --- Buttons --- */
         .btn-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -314,7 +310,6 @@
             fill: currentColor;
         }
 
-        /* --- Divider --- */
         .divider {
             display: flex;
             align-items: center;
@@ -334,7 +329,6 @@
             background: var(--border);
         }
 
-        /* --- Monofor button --- */
         .btn-monofor {
             width: 100%;
             background: rgba(17, 17, 17, 0.92);
@@ -363,7 +357,6 @@
             transform: none;
         }
 
-        /* --- Status / messages --- */
         .message {
             margin-top: 16px;
             padding: 12px 14px;
@@ -394,7 +387,6 @@
             color: var(--gold);
         }
 
-        /* --- Spinner --- */
         .spinner {
             display: inline-block;
             width: 14px;
@@ -409,7 +401,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* --- Footer --- */
         .footer-note {
             position: relative;
             z-index: 1;
@@ -434,12 +425,12 @@
             }
 
             .brand-title {
-                font-size: 26px;
+                font-size: 34px;
                 letter-spacing: 3px;
             }
 
             .brand-subtitle {
-                font-size: 11px;
+                font-size: 12px;
                 letter-spacing: 1.6px;
             }
 
@@ -458,7 +449,7 @@
             <img src="logo.png" alt="ORION Logo">
             <div class="brand-text">
                 <div class="brand-title">ORION</div>
-                <div class="brand-subtitle">AI Solutıons</div>
+                <div class="brand-subtitle">AI Solutions Hub</div>
             </div>
         </div>
 
@@ -483,17 +474,24 @@
                         maxlength="32"
                         pattern="[A-Za-z0-9._-]+"
                     >
-                    <svg viewBox="0 0 448 512"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                    <svg viewBox="0 0 448 512">
+                        <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                    </svg>
                 </div>
             </div>
 
             <div class="btn-row">
                 <button type="button" id="btnCreate" class="btn btn-secondary">
-                    <svg viewBox="0 0 640 512"><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+                    <svg viewBox="0 0 640 512">
+                        <path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM504 312V248H440c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V136c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H552v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/>
+                    </svg>
                     Yeni Kullanıcı Yarat
                 </button>
+
                 <button type="submit" id="btnLogin" class="btn btn-primary">
-                    <svg viewBox="0 0 512 512"><path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L48 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l112 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
+                    <svg viewBox="0 0 512 512">
+                        <path d="M217.9 105.9L340.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L217.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L48 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l112 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM352 416l64 0c17.7 0 32-14.3 32-32l0-256c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32l64 0c53 0 96 43 96 96l0 256c0 53-43 96-96 96l-64 0c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/>
+                    </svg>
                     Giriş Yap
                 </button>
             </div>
@@ -501,7 +499,9 @@
             <div class="divider">veya</div>
 
             <button type="button" class="btn btn-monofor" aria-disabled="true" id="btnMonofor">
-                <svg viewBox="0 0 512 512"><path d="M243.4 2.6l-224 96c-14 6-21.8 21-18.7 35.8S16.8 160 32 160l0 8c0 13.3 10.7 24 24 24l400 0c13.3 0 24-10.7 24-24l0-8c15.2 0 28.3-10.7 31.3-25.6s-4.8-29.9-18.7-35.8l-224-96c-8-3.4-17.2-3.4-25.2 0zM128 224l-64 0 0 196.3c-.6 .3-1.2 .7-1.8 1.1l-48 32c-11.7 7.8-17 22.4-12.9 35.9S17.9 512 32 512l448 0c14.1 0 26.5-9.2 30.6-22.7s-1.1-28.1-12.9-35.9l-48-32c-.6-.4-1.2-.7-1.8-1.1L448 224l-64 0 0 192-40 0 0-192-64 0 0 192-48 0 0-192-64 0 0 192-40 0 0-192zM256 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
+                <svg viewBox="0 0 512 512">
+                    <path d="M243.4 2.6l-224 96c-14 6-21.8 21-18.7 35.8S16.8 160 32 160l0 8c0 13.3 10.7 24 24 24l400 0c13.3 0 24-10.7 24-24l0-8c15.2 0 28.3-10.7 31.3-25.6s-4.8-29.9-18.7-35.8l-224-96c-8-3.4-17.2-3.4-25.2 0zM128 224l-64 0 0 196.3c-.6 .3-1.2 .7-1.8 1.1l-48 32c-11.7 7.8-17 22.4-12.9 35.9S17.9 512 32 512l448 0c14.1 0 26.5-9.2 30.6-22.7s-1.1-28.1-12.9-35.9l-48-32c-.6-.4-1.2-.7-1.8-1.1L448 224l-64 0 0 192-40 0 0-192-64 0 0 192-48 0 0-192-64 0 0 192-40 0 0-192zM256 64a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/>
+                </svg>
                 Monofor ile Giriş Yap
                 <span class="coming-soon-badge">Yakında</span>
             </button>
@@ -522,7 +522,8 @@
         const btnMonofor = document.getElementById('btnMonofor');
         const msgEl = document.getElementById('message');
 
-        const PORTAL_URL = '/portal';
+        // GitHub Pages için aynı klasörde index.html varsa bu şekilde çalışır.
+        const PORTAL_URL = 'index.html';
 
         function showMessage(text, type) {
             msgEl.textContent = text;
@@ -544,89 +545,96 @@
             return null;
         }
 
-        function setLoading(btn, loading, originalText) {
+        function setLoading(btn, loading, loadingText) {
             if (loading) {
                 btn.dataset.original = btn.innerHTML;
-                btn.innerHTML = '<span class="spinner"></span> ' + originalText;
+                btn.innerHTML = '<span class="spinner"></span> ' + loadingText;
                 btn.disabled = true;
                 btnCreate.disabled = true;
                 btnLogin.disabled = true;
             } else {
-                btn.innerHTML = btn.dataset.original || originalText;
+                btn.innerHTML = btn.dataset.original || btn.innerHTML;
                 btn.disabled = false;
                 btnCreate.disabled = false;
                 btnLogin.disabled = false;
             }
         }
 
-        async function callAuth(action) {
+        function saveUserToLocalStorage(username) {
+            const user = {
+                username: username,
+                product: 'ORION',
+                createdAt: new Date().toISOString()
+            };
+
+            localStorage.setItem('orion_user', JSON.stringify(user));
+            localStorage.setItem('orion_logged_in', 'true');
+        }
+
+        function goToPortal() {
+            window.location.href = PORTAL_URL;
+        }
+
+        function handleStaticAuth(action) {
             clearMessage();
+
             const username = usernameInput.value.trim();
             const validationError = validateUsername(username);
+
             if (validationError) {
                 showMessage(validationError, 'error');
                 usernameInput.focus();
                 return;
             }
 
-            const endpoint = action === 'create' ? '/api/users/create' : '/api/users/login';
             const targetBtn = action === 'create' ? btnCreate : btnLogin;
             const loadingLabel = action === 'create' ? 'Oluşturuluyor...' : 'Giriş yapılıyor...';
 
             setLoading(targetBtn, true, loadingLabel);
 
-            try {
-                const response = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username }),
-                });
+            saveUserToLocalStorage(username);
 
-                let data = {};
-                try { data = await response.json(); } catch (_) { /* non-JSON */ }
+            const successMsg = action === 'create'
+                ? 'Kullanıcı oluşturuldu, yönlendiriliyorsunuz...'
+                : 'Giriş başarılı, yönlendiriliyorsunuz...';
 
-                if (!response.ok) {
-                    const errorMsg = data.error || data.message || ('İstek başarısız (HTTP ' + response.status + ')');
-                    showMessage(errorMsg, 'error');
-                    setLoading(targetBtn, false);
-                    return;
-                }
+            showMessage(successMsg, 'success');
 
-                // Persist minimal session info for portal
-                if (data.user && data.user.username) {
-                    try {
-                        localStorage.setItem('orion_user', JSON.stringify(data.user));
-                    } catch (_) { /* ignore */ }
-                }
-                if (data.token) {
-                    try { localStorage.setItem('orion_token', data.token); } catch (_) { /* ignore */ }
-                }
-
-                const successMsg = action === 'create'
-                    ? 'Hesap oluşturuldu, yönlendiriliyorsunuz...'
-                    : 'Giriş başarılı, yönlendiriliyorsunuz...';
-                showMessage(successMsg, 'success');
-
-                setTimeout(() => { window.location.href = PORTAL_URL; }, 600);
-            } catch (err) {
-                showMessage('Sunucuya ulaşılamıyor. Lütfen birkaç saniye sonra tekrar deneyin.', 'error');
-                setLoading(targetBtn, false);
-            }
+            setTimeout(() => {
+                goToPortal();
+            }, 500);
         }
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            callAuth('login');
+            handleStaticAuth('login');
         });
 
-        btnCreate.addEventListener('click', () => callAuth('create'));
+        btnCreate.addEventListener('click', () => {
+            handleStaticAuth('create');
+        });
 
         btnMonofor.addEventListener('click', () => {
-            showMessage('Monofor SSO entegrasyonu yakında aktif olacak.', 'info');
+            showMessage('Monofor SSO entegrasyonu GitHub Pages üzerinde demo modunda pasif durumdadır.', 'info');
         });
 
-        // Auto-focus the username input
-        window.addEventListener('DOMContentLoaded', () => usernameInput.focus());
+        window.addEventListener('DOMContentLoaded', () => {
+            usernameInput.focus();
+
+            const savedUserRaw = localStorage.getItem('orion_user');
+
+            if (savedUserRaw) {
+                try {
+                    const savedUser = JSON.parse(savedUserRaw);
+                    if (savedUser.username) {
+                        usernameInput.value = savedUser.username;
+                    }
+                } catch (_) {
+                    localStorage.removeItem('orion_user');
+                    localStorage.removeItem('orion_logged_in');
+                }
+            }
+        });
     </script>
 </body>
 </html>
