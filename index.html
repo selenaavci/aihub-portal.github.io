@@ -88,7 +88,7 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
-            height: 76px;
+            height: 92px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -97,37 +97,15 @@
         .logo-group {
             display: flex;
             align-items: center;
-            gap: 14px;
         }
 
-        .logo-group img {
-            height: 44px;
-            width: 44px;
-            border-radius: 10px;
-            box-shadow: 0 4px 18px rgba(245, 183, 49, 0.18);
-        }
-
-        .logo-stack {
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-        }
-
-        .logo-text {
-            font-size: 34px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            color: var(--gold);
-            text-shadow: 0 0 16px rgba(245, 183, 49, 0.22);
-        }
-
-        .logo-subtitle {
-            margin-top: 5px;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 1.8px;
-            color: var(--text-secondary);
-            text-transform: uppercase;
+        .brand-logo {
+            height: 72px;
+            width: auto;
+            max-width: 280px;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 0 18px rgba(245, 183, 49, 0.18));
         }
 
         .header-badge {
@@ -502,15 +480,16 @@
             .header-inner {
                 padding: 0 20px;
                 height: auto;
-                min-height: 76px;
+                min-height: 92px;
                 flex-wrap: wrap;
                 gap: 12px;
                 padding-top: 14px;
                 padding-bottom: 14px;
             }
 
-            .logo-text {
-                font-size: 28px;
+            .brand-logo {
+                height: 62px;
+                max-width: 230px;
             }
 
             .header-right {
@@ -565,7 +544,6 @@
 
 <body>
     <script>
-        // GitHub Pages için localStorage tabanlı basit demo oturum kontrolü.
         (function () {
             try {
                 const raw = localStorage.getItem('orion_user');
@@ -596,11 +574,7 @@
     <header>
         <div class="header-inner">
             <div class="logo-group">
-                <img src="logo.png" alt="ORION Logo">
-                <div class="logo-stack">
-                    <div class="logo-text">ORION</div>
-                    <div class="logo-subtitle">AI Solutions Hub</div>
-                </div>
+                <img src="orion-logo.png" alt="ORION Logo" class="brand-logo">
             </div>
 
             <div class="header-right">
