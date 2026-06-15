@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI HUB - Giriş Yap</title>
-    <link rel="icon" href="logo.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>ORION - Giriş Yap</title>
+    <link rel="icon" href="/static/logo.png">
     <style>
         :root {
             --gold: #F5B731;
@@ -25,11 +23,26 @@
             --success: #2ECC71;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
-            background: var(--bg-primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, -apple-system, BlinkMacSystemFont, sans-serif;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 0, 0, 0.78) 0%,
+                    rgba(10, 10, 10, 0.68) 45%,
+                    rgba(0, 0, 0, 0.82) 100%
+                ),
+                url('/static/wallpaper.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
@@ -37,8 +50,33 @@
             justify-content: center;
             padding: 24px;
             overflow-x: hidden;
+            position: relative;
         }
 
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at center, rgba(245, 183, 49, 0.08) 0%, transparent 32%),
+                radial-gradient(circle at 50% 10%, rgba(245, 183, 49, 0.08) 0%, transparent 38%),
+                rgba(0, 0, 0, 0.18);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.18);
+            backdrop-filter: blur(1px);
+            -webkit-backdrop-filter: blur(1px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* --- Ambient background glow --- */
         .bg-glow {
             position: fixed;
             top: -200px;
@@ -46,10 +84,11 @@
             transform: translateX(-50%);
             width: 800px;
             height: 600px;
-            background: radial-gradient(ellipse, rgba(245, 183, 49, 0.08) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(245, 183, 49, 0.09) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
+
         .bg-glow-bottom {
             position: fixed;
             bottom: -300px;
@@ -57,52 +96,93 @@
             transform: translateX(-50%);
             width: 900px;
             height: 600px;
-            background: radial-gradient(ellipse, rgba(245, 183, 49, 0.05) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(245, 183, 49, 0.06) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
 
+        /* --- Card --- */
         .login-card {
             position: relative;
             z-index: 1;
             width: 100%;
             max-width: 440px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: rgba(22, 22, 22, 0.86);
+            border: 1px solid rgba(245, 183, 49, 0.22);
             border-radius: 20px;
             padding: 44px 40px 36px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow:
+                0 20px 70px rgba(0, 0, 0, 0.65),
+                0 0 35px rgba(245, 183, 49, 0.08);
             overflow: hidden;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
+
         .login-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0;
+            top: 0;
+            left: 0;
+            right: 0;
             height: 3px;
             background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
 
+        .login-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(245, 183, 49, 0.08), transparent 36%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent);
+            pointer-events: none;
+        }
+
         .brand {
+            position: relative;
+            z-index: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 14px;
-            margin-bottom: 28px;
+            margin-bottom: 26px;
         }
+
         .brand img {
             height: 64px;
             width: 64px;
             border-radius: 14px;
-            box-shadow: 0 4px 20px rgba(245, 183, 49, 0.15);
+            box-shadow: 0 4px 24px rgba(245, 183, 49, 0.22);
         }
+
         .brand-text {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            line-height: 1;
         }
-        .brand-text span { color: var(--gold); }
+
+        .brand-title {
+            font-size: 30px;
+            font-weight: 850;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-shadow: 0 0 18px rgba(245, 183, 49, 0.28);
+        }
+
+        .brand-subtitle {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2.2px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
 
         .subtitle {
+            position: relative;
+            z-index: 1;
             text-align: center;
             color: var(--text-secondary);
             font-size: 14px;
@@ -110,7 +190,16 @@
             line-height: 1.5;
         }
 
-        .form-group { margin-bottom: 20px; }
+        /* --- Form --- */
+        form {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
         .form-label {
             display: block;
             font-size: 12px;
@@ -120,7 +209,11 @@
             letter-spacing: 0.5px;
             margin-bottom: 8px;
         }
-        .input-wrap { position: relative; }
+
+        .input-wrap {
+            position: relative;
+        }
+
         .input-wrap svg {
             position: absolute;
             left: 16px;
@@ -131,10 +224,11 @@
             fill: var(--text-muted);
             transition: fill 0.2s;
         }
+
         .form-input {
             width: 100%;
             padding: 14px 16px 14px 44px;
-            background: var(--bg-secondary);
+            background: rgba(17, 17, 17, 0.92);
             border: 1px solid var(--border);
             border-radius: 12px;
             color: var(--text-primary);
@@ -143,20 +237,29 @@
             outline: none;
             transition: all 0.2s;
         }
-        .form-input::placeholder { color: var(--text-muted); }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
         .form-input:focus {
             border-color: var(--gold);
             box-shadow: 0 0 0 3px rgba(245, 183, 49, 0.1);
         }
-        .form-input:focus + svg,
-        .input-wrap:focus-within svg { fill: var(--gold); }
 
+        .form-input:focus + svg,
+        .input-wrap:focus-within svg {
+            fill: var(--gold);
+        }
+
+        /* --- Buttons --- */
         .btn-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-top: 24px;
         }
+
         .btn {
             display: inline-flex;
             align-items: center;
@@ -172,34 +275,46 @@
             transition: all 0.2s;
             outline: none;
         }
+
         .btn-primary {
             color: var(--bg-primary);
             background: var(--gold);
         }
+
         .btn-primary:hover {
             background: var(--gold-light);
-            box-shadow: 0 4px 16px rgba(245, 183, 49, 0.3);
+            box-shadow: 0 4px 18px rgba(245, 183, 49, 0.35);
             transform: translateY(-1px);
         }
+
         .btn-secondary {
             color: var(--text-primary);
-            background: var(--bg-secondary);
+            background: rgba(17, 17, 17, 0.92);
             border-color: var(--border);
         }
+
         .btn-secondary:hover {
             background: var(--bg-card-hover);
             border-color: var(--gold);
             color: var(--gold);
             transform: translateY(-1px);
         }
-        .btn:disabled, .btn[aria-disabled="true"] {
+
+        .btn:disabled,
+        .btn[aria-disabled="true"] {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none !important;
             box-shadow: none !important;
         }
-        .btn svg { width: 14px; height: 14px; fill: currentColor; }
 
+        .btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        /* --- Divider --- */
         .divider {
             display: flex;
             align-items: center;
@@ -210,21 +325,25 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .divider::before, .divider::after {
+
+        .divider::before,
+        .divider::after {
             content: '';
             flex: 1;
             height: 1px;
             background: var(--border);
         }
 
+        /* --- Monofor button --- */
         .btn-monofor {
             width: 100%;
-            background: var(--bg-secondary);
+            background: rgba(17, 17, 17, 0.92);
             color: var(--text-secondary);
             border-color: var(--border);
             position: relative;
             cursor: not-allowed;
         }
+
         .btn-monofor .coming-soon-badge {
             font-size: 10px;
             font-weight: 700;
@@ -236,13 +355,15 @@
             margin-left: 8px;
             letter-spacing: 0.5px;
         }
+
         .btn-monofor:hover {
             border-color: var(--border);
-            background: var(--bg-secondary);
+            background: rgba(17, 17, 17, 0.92);
             color: var(--text-secondary);
             transform: none;
         }
 
+        /* --- Status / messages --- */
         .message {
             margin-top: 16px;
             padding: 12px 14px;
@@ -251,18 +372,21 @@
             line-height: 1.5;
             display: none;
         }
+
         .message.error {
             display: block;
             background: rgba(231, 76, 60, 0.08);
             border: 1px solid rgba(231, 76, 60, 0.3);
             color: #FF8A7E;
         }
+
         .message.success {
             display: block;
             background: rgba(46, 204, 113, 0.08);
             border: 1px solid rgba(46, 204, 113, 0.3);
             color: #6FE7A0;
         }
+
         .message.info {
             display: block;
             background: rgba(245, 183, 49, 0.08);
@@ -270,6 +394,7 @@
             color: var(--gold);
         }
 
+        /* --- Spinner --- */
         .spinner {
             display: inline-block;
             width: 14px;
@@ -279,20 +404,48 @@
             border-radius: 50%;
             animation: spin 0.7s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
 
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- Footer --- */
         .footer-note {
+            position: relative;
+            z-index: 1;
             text-align: center;
             margin-top: 28px;
             font-size: 11px;
             color: var(--text-muted);
             letter-spacing: 0.3px;
         }
-        .footer-note .accent { color: var(--gold); }
+
+        .footer-note .accent {
+            color: var(--gold);
+        }
 
         @media (max-width: 480px) {
-            .login-card { padding: 32px 24px 28px; }
-            .btn-row { grid-template-columns: 1fr; }
+            body {
+                background-attachment: scroll;
+            }
+
+            .login-card {
+                padding: 32px 24px 28px;
+            }
+
+            .brand-title {
+                font-size: 26px;
+                letter-spacing: 3px;
+            }
+
+            .brand-subtitle {
+                font-size: 11px;
+                letter-spacing: 1.6px;
+            }
+
+            .btn-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -302,8 +455,11 @@
 
     <main class="login-card">
         <div class="brand">
-            <img src="logo.png" alt="AI HUB Logo">
-            <div class="brand-text">AI <span>HUB</span></div>
+            <img src="/static/logo.png" alt="ORION Logo">
+            <div class="brand-text">
+                <div class="brand-title">ORION</div>
+                <div class="brand-subtitle">AI Solutions Hub</div>
+            </div>
         </div>
 
         <p class="subtitle">
@@ -354,29 +510,19 @@
         </form>
 
         <div class="footer-note">
-            AI HUB &copy; <span class="accent">ODEATECH</span> &mdash; AI Applications &amp; Big Data Management Ekibi
+            ORION &copy; <span class="accent">ODEATECH</span> &mdash; AI Applications &amp; Big Data Management Ekibi
         </div>
     </main>
 
     <script>
-        // ─────────────────────────────────────────────────────────────────────
-        // GitHub Pages (statik) sürüm — backend yok, "kullanıcı veritabanı"
-        // tarayıcının localStorage'ında tutulur. Yalnızca demo amaçlıdır.
-        //
-        // Anahtarlar:
-        //   ai_hub_users  → JSON string array, kayıtlı kullanıcı adları
-        //   ai_hub_user   → JSON string, aktif oturum kullanıcısı
-        // ─────────────────────────────────────────────────────────────────────
-        const PORTAL_URL = 'index.html';
-        const USERS_KEY = 'ai_hub_users';
-        const SESSION_KEY = 'ai_hub_user';
-
         const form = document.getElementById('authForm');
         const usernameInput = document.getElementById('username');
         const btnCreate = document.getElementById('btnCreate');
         const btnLogin = document.getElementById('btnLogin');
         const btnMonofor = document.getElementById('btnMonofor');
         const msgEl = document.getElementById('message');
+
+        const PORTAL_URL = '/portal';
 
         function showMessage(text, type) {
             msgEl.textContent = text;
@@ -398,40 +544,22 @@
             return null;
         }
 
-        function loadUsers() {
-            try {
-                const raw = localStorage.getItem(USERS_KEY);
-                const arr = raw ? JSON.parse(raw) : [];
-                return Array.isArray(arr) ? arr : [];
-            } catch (_) {
-                return [];
-            }
-        }
-
-        function saveUsers(list) {
-            try { localStorage.setItem(USERS_KEY, JSON.stringify(list)); } catch (_) {}
-        }
-
-        function startSession(username) {
-            try {
-                localStorage.setItem(SESSION_KEY, JSON.stringify({ username }));
-            } catch (_) {}
-        }
-
         function setLoading(btn, loading, originalText) {
             if (loading) {
                 btn.dataset.original = btn.innerHTML;
                 btn.innerHTML = '<span class="spinner"></span> ' + originalText;
+                btn.disabled = true;
                 btnCreate.disabled = true;
                 btnLogin.disabled = true;
             } else {
                 btn.innerHTML = btn.dataset.original || originalText;
+                btn.disabled = false;
                 btnCreate.disabled = false;
                 btnLogin.disabled = false;
             }
         }
 
-        function handleAuth(action) {
+        async function callAuth(action) {
             clearMessage();
             const username = usernameInput.value.trim();
             const validationError = validateUsername(username);
@@ -441,62 +569,64 @@
                 return;
             }
 
+            const endpoint = action === 'create' ? '/api/users/create' : '/api/users/login';
             const targetBtn = action === 'create' ? btnCreate : btnLogin;
             const loadingLabel = action === 'create' ? 'Oluşturuluyor...' : 'Giriş yapılıyor...';
+
             setLoading(targetBtn, true, loadingLabel);
 
-            // Backend yok, ama kullanıcıya gerçek bir feedback hissi vermek için
-            // küçük bir simüle gecikme.
-            setTimeout(() => {
-                const users = loadUsers();
-                const exists = users.includes(username);
+            try {
+                const response = await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username }),
+                });
 
-                if (action === 'create') {
-                    if (exists) {
-                        showMessage('Bu kullanıcı adı zaten kayıtlı. Lütfen Giriş Yap butonunu kullanın.', 'error');
-                        setLoading(targetBtn, false);
-                        return;
-                    }
-                    users.push(username);
-                    saveUsers(users);
-                    startSession(username);
-                    showMessage('Hesap oluşturuldu, yönlendiriliyorsunuz...', 'success');
-                    setTimeout(() => { window.location.href = PORTAL_URL; }, 500);
-                    return;
-                }
+                let data = {};
+                try { data = await response.json(); } catch (_) { /* non-JSON */ }
 
-                // action === 'login'
-                if (!exists) {
-                    showMessage('Kullanıcı bulunamadı. Önce Yeni Kullanıcı Yarat ile hesap oluşturun.', 'error');
+                if (!response.ok) {
+                    const errorMsg = data.error || data.message || ('İstek başarısız (HTTP ' + response.status + ')');
+                    showMessage(errorMsg, 'error');
                     setLoading(targetBtn, false);
                     return;
                 }
-                startSession(username);
-                showMessage('Giriş başarılı, yönlendiriliyorsunuz...', 'success');
-                setTimeout(() => { window.location.href = PORTAL_URL; }, 500);
-            }, 300);
+
+                // Persist minimal session info for portal
+                if (data.user && data.user.username) {
+                    try {
+                        localStorage.setItem('orion_user', JSON.stringify(data.user));
+                    } catch (_) { /* ignore */ }
+                }
+                if (data.token) {
+                    try { localStorage.setItem('orion_token', data.token); } catch (_) { /* ignore */ }
+                }
+
+                const successMsg = action === 'create'
+                    ? 'Hesap oluşturuldu, yönlendiriliyorsunuz...'
+                    : 'Giriş başarılı, yönlendiriliyorsunuz...';
+                showMessage(successMsg, 'success');
+
+                setTimeout(() => { window.location.href = PORTAL_URL; }, 600);
+            } catch (err) {
+                showMessage('Sunucuya ulaşılamıyor. Lütfen birkaç saniye sonra tekrar deneyin.', 'error');
+                setLoading(targetBtn, false);
+            }
         }
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            handleAuth('login');
+            callAuth('login');
         });
-        btnCreate.addEventListener('click', () => handleAuth('create'));
+
+        btnCreate.addEventListener('click', () => callAuth('create'));
+
         btnMonofor.addEventListener('click', () => {
             showMessage('Monofor SSO entegrasyonu yakında aktif olacak.', 'info');
         });
 
-        // Zaten giriş yapılmışsa direkt portala götür
-        window.addEventListener('DOMContentLoaded', () => {
-            try {
-                const session = localStorage.getItem(SESSION_KEY);
-                if (session) {
-                    window.location.replace(PORTAL_URL);
-                    return;
-                }
-            } catch (_) {}
-            usernameInput.focus();
-        });
+        // Auto-focus the username input
+        window.addEventListener('DOMContentLoaded', () => usernameInput.focus());
     </script>
 </body>
 </html>
