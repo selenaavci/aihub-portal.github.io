@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI HUB - Agent Portal</title>
+    <title>ORION - Agent Portal</title>
     <link rel="icon" href="logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --gold: #F5B731;
@@ -32,13 +33,35 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0, 0, 0, 0.88) 0%,
+                    rgba(10, 10, 10, 0.82) 48%,
+                    rgba(0, 0, 0, 0.9) 100%
+                ),
+                url('wallpaper.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: var(--text-primary);
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* --- Ambient background glow --- */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(245, 183, 49, 0.08) 0%, transparent 34%),
+                radial-gradient(circle at 10% 85%, rgba(245, 183, 49, 0.06) 0%, transparent 30%),
+                rgba(0, 0, 0, 0.12);
+            pointer-events: none;
+            z-index: 0;
+        }
+
         .bg-glow {
             position: fixed;
             top: -200px;
@@ -46,27 +69,26 @@
             transform: translateX(-50%);
             width: 800px;
             height: 600px;
-            background: radial-gradient(ellipse, rgba(245, 183, 49, 0.06) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(245, 183, 49, 0.08) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* --- Header --- */
         header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(10, 10, 10, 0.8);
+            background: rgba(10, 10, 10, 0.82);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid rgba(245, 183, 49, 0.14);
         }
 
         .header-inner {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 40px;
-            height: 72px;
+            height: 76px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -79,19 +101,33 @@
         }
 
         .logo-group img {
-            height: 42px;
-            width: 42px;
+            height: 44px;
+            width: 44px;
             border-radius: 10px;
+            box-shadow: 0 4px 18px rgba(245, 183, 49, 0.18);
+        }
+
+        .logo-stack {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
         }
 
         .logo-text {
-            font-size: 40px;
-            font-weight: 700;
-            letter-spacing: 1px;
+            font-size: 34px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: var(--gold);
+            text-shadow: 0 0 16px rgba(245, 183, 49, 0.22);
         }
 
-        .logo-text span {
-            color: var(--gold);
+        .logo-subtitle {
+            margin-top: 5px;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.8px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
         }
 
         .header-badge {
@@ -123,7 +159,10 @@
             padding: 5px 12px;
             border-radius: 20px;
         }
-        .user-pill svg { fill: var(--gold); }
+
+        .user-pill svg {
+            fill: var(--gold);
+        }
 
         .btn-logout {
             display: inline-flex;
@@ -140,13 +179,13 @@
             cursor: pointer;
             transition: all 0.2s;
         }
+
         .btn-logout:hover {
             color: var(--gold);
             border-color: var(--gold);
             background: rgba(245, 183, 49, 0.05);
         }
 
-        /* --- Hero --- */
         .hero {
             max-width: 1400px;
             margin: 0 auto;
@@ -157,7 +196,7 @@
         }
 
         .hero h1 {
-            font-size: 40px;
+            font-size: 42px;
             font-weight: 800;
             margin-bottom: 12px;
             background: linear-gradient(135deg, var(--text-primary) 0%, var(--gold) 100%);
@@ -169,12 +208,11 @@
         .hero p {
             font-size: 17px;
             color: var(--text-secondary);
-            max-width: 560px;
+            max-width: 650px;
             margin: 0 auto;
             line-height: 1.6;
         }
 
-        /* --- Stats bar --- */
         .stats-bar {
             max-width: 1400px;
             margin: 32px auto 0;
@@ -211,7 +249,6 @@
             background: var(--border);
         }
 
-        /* --- Search --- */
         .search-section {
             max-width: 1400px;
             margin: 40px auto 0;
@@ -238,7 +275,7 @@
         .search-box input {
             width: 100%;
             padding: 14px 18px 14px 46px;
-            background: var(--bg-secondary);
+            background: rgba(17, 17, 17, 0.88);
             border: 1px solid var(--border);
             border-radius: 12px;
             color: var(--text-primary);
@@ -246,6 +283,8 @@
             font-family: 'Inter', sans-serif;
             outline: none;
             transition: all 0.2s;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .search-box input::placeholder {
@@ -257,7 +296,6 @@
             box-shadow: 0 0 0 3px rgba(245, 183, 49, 0.1);
         }
 
-        /* --- Agent grid --- */
         .grid-section {
             max-width: 1400px;
             margin: 40px auto 0;
@@ -272,10 +310,9 @@
             gap: 20px;
         }
 
-        /* --- Card --- */
         .agent-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: rgba(22, 22, 22, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
             padding: 28px;
             display: flex;
@@ -285,6 +322,8 @@
             cursor: default;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
         .agent-card::before {
@@ -300,10 +339,12 @@
         }
 
         .agent-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-hover);
+            background: rgba(28, 28, 28, 0.92);
+            border-color: rgba(245, 183, 49, 0.22);
             transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.35),
+                0 0 24px rgba(245, 183, 49, 0.05);
         }
 
         .agent-card:hover::before {
@@ -326,7 +367,7 @@
             font-size: 20px;
             color: var(--text-primary);
             background: var(--card-accent);
-            opacity: 0.9;
+            opacity: 0.92;
         }
 
         .card-status {
@@ -357,7 +398,6 @@
             box-shadow: 0 0 6px rgba(245, 183, 49, 0.4);
         }
 
-        /* --- Coming soon card overlay --- */
         .agent-card.coming-soon {
             opacity: 0.7;
         }
@@ -394,6 +434,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 12px;
         }
 
         .card-path {
@@ -403,6 +444,9 @@
             background: rgba(255, 255, 255, 0.04);
             padding: 4px 10px;
             border-radius: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .btn-open {
@@ -420,6 +464,7 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.2s;
+            white-space: nowrap;
         }
 
         .btn-open:hover {
@@ -436,40 +481,111 @@
             transform: translateX(2px);
         }
 
-        /* --- Footer --- */
         footer {
             text-align: center;
             padding: 32px 40px;
-            border-top: 1px solid var(--border);
+            border-top: 1px solid rgba(245, 183, 49, 0.12);
             color: var(--text-muted);
             font-size: 12px;
             position: relative;
             z-index: 1;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
 
-        /* --- Responsive --- */
         @media (max-width: 768px) {
-            .header-inner { padding: 0 20px; }
-            .hero { padding: 40px 20px 10px; }
-            .hero h1 { font-size: 28px; }
-            .stats-bar { gap: 20px; padding: 0 20px; flex-wrap: wrap; justify-content: center; }
-            .search-section { padding: 0 20px; }
-            .grid-section { padding: 0 20px 60px; }
-            .agent-grid { grid-template-columns: 1fr; }
-            .header-badge { display: none; }
+            body {
+                background-attachment: scroll;
+            }
+
+            .header-inner {
+                padding: 0 20px;
+                height: auto;
+                min-height: 76px;
+                flex-wrap: wrap;
+                gap: 12px;
+                padding-top: 14px;
+                padding-bottom: 14px;
+            }
+
+            .logo-text {
+                font-size: 28px;
+            }
+
+            .header-right {
+                width: 100%;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                padding: 40px 20px 10px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .stats-bar {
+                gap: 20px;
+                padding: 0 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .search-section {
+                padding: 0 20px;
+            }
+
+            .grid-section {
+                padding: 0 20px 60px;
+            }
+
+            .agent-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-badge {
+                display: none;
+            }
+
+            .card-footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .btn-open {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
+
 <body>
     <script>
-        // ───── Auth guard (GitHub Pages, localStorage-only demo) ─────────────
-        // Eğer login sayfasından gelinmediyse (oturum yoksa) login.html'e döner.
+        // GitHub Pages için localStorage tabanlı basit demo oturum kontrolü.
         (function () {
             try {
-                if (!localStorage.getItem('ai_hub_user')) {
+                const raw = localStorage.getItem('orion_user');
+                const isLoggedIn = localStorage.getItem('orion_logged_in');
+
+                if (!raw || isLoggedIn !== 'true') {
+                    window.location.replace('login.html');
+                    return;
+                }
+
+                const user = JSON.parse(raw);
+
+                if (!user || !user.username) {
+                    localStorage.removeItem('orion_user');
+                    localStorage.removeItem('orion_logged_in');
                     window.location.replace('login.html');
                 }
             } catch (_) {
+                localStorage.removeItem('orion_user');
+                localStorage.removeItem('orion_logged_in');
                 window.location.replace('login.html');
             }
         })();
@@ -480,17 +596,27 @@
     <header>
         <div class="header-inner">
             <div class="logo-group">
-                <img src="logo.png" alt="AI HUB Logo">
-                <div class="logo-text">AI <span>HUB</span></div>
+                <img src="logo.png" alt="ORION Logo">
+                <div class="logo-stack">
+                    <div class="logo-text">ORION</div>
+                    <div class="logo-subtitle">AI Solutions Hub</div>
+                </div>
             </div>
+
             <div class="header-right">
                 <div class="header-badge">ODEATECH</div>
+
                 <div class="user-pill" id="userPill" title="Aktif kullanıcı">
-                    <svg viewBox="0 0 448 512" width="12" height="12" fill="currentColor"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                    <svg viewBox="0 0 448 512" width="12" height="12" fill="currentColor">
+                        <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+                    </svg>
                     <span id="userName">—</span>
                 </div>
+
                 <button class="btn-logout" id="btnLogout" title="Çıkış yap">
-                    <svg viewBox="0 0 512 512" width="12" height="12" fill="currentColor"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L192 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
+                    <svg viewBox="0 0 512 512" width="12" height="12" fill="currentColor">
+                        <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1L192 320c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/>
+                    </svg>
                     Çıkış
                 </button>
             </div>
@@ -499,7 +625,10 @@
 
     <section class="hero">
         <h1>AI Agent Katalog</h1>
-        <p>Tüm yapay zeka agentlarımıza tek bir noktadan erişim sağlayabileceğiniz merkezi portala hoşgeldiniz.</p>
+        <p>
+            Tüm yapay zeka agentlarımıza tek bir noktadan erişim sağlayabileceğiniz
+            merkezi ORION platformuna hoş geldiniz.
+        </p>
     </section>
 
     <div class="stats-bar">
@@ -507,12 +636,16 @@
             <div class="stat-number">18</div>
             <div class="stat-label">Agent</div>
         </div>
+
         <div class="stat-divider"></div>
+
         <div class="stat-item">
             <div class="stat-number">12</div>
             <div class="stat-label">Aktif Agent</div>
         </div>
+
         <div class="stat-divider"></div>
+
         <div class="stat-item">
             <div class="stat-number">Tek Platform</div>
             <div class="stat-label"></div>
@@ -529,10 +662,9 @@
     <section class="grid-section">
         <div class="agent-grid" id="agentGrid">
 
-            <!-- Anomaly Detection -->
             <div class="agent-card" style="--card-accent: #E74C3C;" data-name="anomaly detection">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #E74C3C;"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -545,10 +677,9 @@
                 </div>
             </div>
 
-            <!-- Data Cleaning -->
             <div class="agent-card" style="--card-accent: #2ECC71;" data-name="data cleaning">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #2ECC71;"><i class="fa-solid fa-broom"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-broom"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -557,14 +688,13 @@
                 </div>
                 <div class="card-footer">
                     <span class="card-path">/agents/data-cleaning</span>
-                   <a href="https://data-cleaningagent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
+                    <a href="https://data-cleaningagent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
                 </div>
             </div>
 
-            <!-- Data Visualization -->
             <div class="agent-card" style="--card-accent: #3498DB;" data-name="data visualization">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #3498DB;"><i class="fa-solid fa-chart-pie"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-chart-pie"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -577,10 +707,9 @@
                 </div>
             </div>
 
-            <!-- Data Quality -->
             <div class="agent-card" style="--card-accent: #9B59B6;" data-name="data quality">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #9B59B6;"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -593,10 +722,9 @@
                 </div>
             </div>
 
-            <!-- Feature Engineering -->
             <div class="agent-card" style="--card-accent: #E67E22;" data-name="feature engineering">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #E67E22;"><i class="fa-solid fa-gears"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-gears"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -609,10 +737,9 @@
                 </div>
             </div>
 
-            <!-- Smart Modeling -->
             <div class="agent-card" style="--card-accent: #1ABC9C;" data-name="smart modeling">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #1ABC9C;"><i class="fa-solid fa-brain"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -625,10 +752,9 @@
                 </div>
             </div>
 
-            <!-- Segment Intelligence -->
             <div class="agent-card" style="--card-accent: #F39C12;" data-name="segment intelligence">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #F39C12;"><i class="fa-solid fa-users-viewfinder"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -641,10 +767,9 @@
                 </div>
             </div>
 
-            <!-- Mock Data Generator -->
             <div class="agent-card" style="--card-accent: #16A085;" data-name="mock data generator">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #16A085;"><i class="fa-solid fa-database"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-database"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -657,10 +782,9 @@
                 </div>
             </div>
 
-            <!-- Quiz Generator -->
             <div class="agent-card" style="--card-accent: #8E44AD;" data-name="quiz generator">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #8E44AD;"><i class="fa-solid fa-circle-question"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-circle-question"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -673,10 +797,9 @@
                 </div>
             </div>
 
-            <!-- MailCraft Agent -->
             <div class="agent-card" style="--card-accent: #D35400;" data-name="mailcraft agent">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #D35400;"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -689,10 +812,9 @@
                 </div>
             </div>
 
-            <!-- Data Comparison -->
             <div class="agent-card" style="--card-accent: #2980B9;" data-name="data comparison">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #2980B9;"><i class="fa-solid fa-code-compare"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-code-compare"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -704,11 +826,10 @@
                     <a href="https://data-comparison-agent.streamlit.app/" class="btn-open" target="_blank" rel="noopener noreferrer">AÇ</a>
                 </div>
             </div>
-            
-            <!-- Forecasting Agent -->
+
             <div class="agent-card" style="--card-accent: #26A69A;" data-name="forecasting agent">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #26A69A;"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
                     <div class="card-status"><span class="status-dot ready"></span> Hazır</div>
                 </div>
                 <div class="card-body">
@@ -721,10 +842,9 @@
                 </div>
             </div>
 
-            <!-- A/B Testing Agent (Yakında) -->
             <div class="agent-card coming-soon" style="--card-accent: #AB47BC;" data-name="a/b testing agent">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #AB47BC;"><i class="fa-solid fa-flask-vial"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-flask-vial"></i></div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -736,11 +856,10 @@
                     <span class="btn-open">Yakında <i class="fa-solid fa-clock"></i></span>
                 </div>
             </div>
-                
-            <!-- Code Assist (Yakında) -->
+
             <div class="agent-card coming-soon" style="--card-accent: #00BCD4;" data-name="code assist">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #00BCD4;"><i class="fa-solid fa-code"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-code"></i></div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -753,10 +872,9 @@
                 </div>
             </div>
 
-            <!-- SQL Generator (Yakında) -->
             <div class="agent-card coming-soon" style="--card-accent: #4CAF50;" data-name="sql generator">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #4CAF50;"><i class="fa-solid fa-database"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-database"></i></div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -768,11 +886,10 @@
                     <span class="btn-open">Yakında <i class="fa-solid fa-clock"></i></span>
                 </div>
             </div>
-            
-            <!-- PMO Agent (Yakında) -->
+
             <div class="agent-card coming-soon" style="--card-accent: #FF7043;" data-name="pmo agent">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #FF7043;"><i class="fa-solid fa-diagram-project"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-diagram-project"></i></div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -785,10 +902,9 @@
                 </div>
             </div>
 
-            <!-- Document Insight (Yakında) -->
             <div class="agent-card coming-soon" style="--card-accent: #5C6BC0;" data-name="document insight">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #5C6BC0;"><i class="fa-solid fa-file-circle-question"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-file-circle-question"></i></div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -801,10 +917,9 @@
                 </div>
             </div>
 
-            <!-- Social Intelligence (Yakında) -->
             <div class="agent-card coming-soon" style="--card-accent: #9C27B0;" data-name="social intelligence">
                 <div class="card-top">
-                    <div class="card-icon" style="background: #9C27B0;"><i class="fa-solid fa-share-nodes"></i></div>
+                    <div class="card-icon"><i class="fa-solid fa-share-nodes"></i></div>
                     <div class="card-status"><span class="status-dot coming-soon"></span> Yakında</div>
                 </div>
                 <div class="card-body">
@@ -816,11 +931,12 @@
                     <span class="btn-open">Yakında <i class="fa-solid fa-clock"></i></span>
                 </div>
             </div>
+
         </div>
     </section>
 
     <footer>
-        AI HUB Portal &mdash; AI Applications &amp; Big Data Management Ekibi
+        ORION &mdash; AI Applications &amp; Big Data Management Ekibi
     </footer>
 
     <script>
@@ -829,28 +945,45 @@
 
         searchInput.addEventListener('input', function () {
             const q = this.value.toLowerCase().trim();
+
             cards.forEach(card => {
-                const name = card.getAttribute('data-name');
-                const desc = card.querySelector('.card-body p').textContent.toLowerCase();
-                const match = name.includes(q) || desc.includes(q);
+                const name = card.getAttribute('data-name') || '';
+                const title = card.querySelector('.card-body h3')?.textContent.toLowerCase() || '';
+                const desc = card.querySelector('.card-body p')?.textContent.toLowerCase() || '';
+
+                const match =
+                    name.includes(q) ||
+                    title.includes(q) ||
+                    desc.includes(q);
+
                 card.style.display = match ? '' : 'none';
             });
         });
 
-        // ───── Kullanıcı adını göster + Çıkış butonu ────────────────────────
         (function () {
             const userNameEl = document.getElementById('userName');
             const logoutBtn = document.getElementById('btnLogout');
+
             try {
-                const raw = localStorage.getItem('ai_hub_user');
+                const raw = localStorage.getItem('orion_user');
+
                 if (raw) {
                     const user = JSON.parse(raw);
-                    if (user && user.username) userNameEl.textContent = user.username;
+
+                    if (user && user.username) {
+                        userNameEl.textContent = user.username;
+                    }
                 }
-            } catch (_) {}
+            } catch (_) {
+                userNameEl.textContent = '—';
+            }
 
             logoutBtn.addEventListener('click', () => {
-                try { localStorage.removeItem('ai_hub_user'); } catch (_) {}
+                try {
+                    localStorage.removeItem('orion_user');
+                    localStorage.removeItem('orion_logged_in');
+                } catch (_) {}
+
                 window.location.href = 'login.html';
             });
         })();
